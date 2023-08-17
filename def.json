@@ -1,0 +1,18 @@
+{
+    "id": "CustomStart",
+    "name": "CustomStart",
+    "version_name": "0.15",
+    "version_code": 1,
+    "author": "SunYuDai, includes some option sets and inspired by Johan's work",
+    "homepage": "https://www.desyncedgame.com/",
+    "description": "Uses Mod Options to configure your start",
+    "options": "options.lua",
+    "packages": {
+        "Scenario": {
+            "name": "CustomStart",
+            "entry": "scenario.lua",
+            "dependencies": [ "Main/Freeplay" ],
+            "type": "Scenario"
+        }
+    }
+}
