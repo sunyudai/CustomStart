@@ -54,24 +54,23 @@ function package:on_player_faction_spawn(faction, is_respawn)
 		faction.home_entity = lander
 	end
 
-	
 	-- Additional units
 	if profile.AddlUnits_ExtraWorkers then
 		local worker1 = Map.CreateEntity(faction, "f_bot_1s_a")
 		worker1:AddComponent("c_behavior", 4)
 		worker1:Place(loc.x+3, loc.y)
 		worker1.disconnected = false
-		
+
 		local worker2 = Map.CreateEntity(faction, "f_bot_1s_a")
 		worker2:AddComponent("c_behavior", 4)
 		worker2:Place(loc.x+3, loc.y)
 		worker2.disconnected = false
-		
+
 		local worker3 = Map.CreateEntity(faction, "f_bot_1s_a")
 		worker3:AddComponent("c_behavior", 4)
 		worker3:Place(loc.x+3, loc.y)
 		worker3.disconnected = false
-		
+
 		local worker4 = Map.CreateEntity(faction, "f_bot_1s_a")
 		worker4:AddComponent("c_behavior", 4)
 		worker4:Place(loc.x+3, loc.y)
@@ -81,17 +80,17 @@ function package:on_player_faction_spawn(faction, is_respawn)
 
 	if profile.AddlUnits_DefaultScouts then
 		local bot1 = Map.CreateEntity(faction, "f_bot_1s_as")
-		bot1:Place(loc.x-2, loc.y+3)
+		bot1:Place(loc.x-1, loc.y+1)
 		bot1.disconnected = false
-	
+
 		local bot2 = Map.CreateEntity(faction, "f_bot_1s_as")
 		bot2:AddComponent("c_adv_miner", 1)
-		bot2:Place(loc.x+3, loc.y+4)
+		bot2:Place(loc.x, loc.y+1)
 		bot2.disconnected = false
-	
+
 		local bot3 = Map.CreateEntity(faction, "f_bot_1s_as")
 		bot3:AddComponent("c_adv_miner", 1)
-		bot3:Place(loc.x+1, loc.y+2)
+		bot3:Place(loc.x+1, loc.y+1)
 		bot3.disconnected = false
 	end
 
@@ -104,7 +103,7 @@ function package:on_player_faction_spawn(faction, is_respawn)
 		stripMiner1:AddComponent("c_behavior", 4)
 		stripMiner1:Place(loc.x-1, loc.y-2)
 		stripMiner1.disconnected = false	
-		
+
 		local stripMiner2 = Map.CreateEntity(faction, "f_bot_2m_as")
 		stripMiner2:AddComponent("c_adv_miner", 1)
 		stripMiner2:AddComponent("c_adv_miner", 2)
@@ -114,21 +113,44 @@ function package:on_player_faction_spawn(faction, is_respawn)
 		stripMiner2.disconnected = false
 	end
 
-	
 
 
 	-- unlock starter tech
 	faction:Unlock("t_robot_tech_basic")
 
-	if profile.Tech_Behaviors then
-		faction:Unlock("t_signals2")
+	if profile.CustomStart_Tech_BasicSignals then
+		faction:Unlock("t_signals1")
 	end
-	
+	if profile.CustomStart_Tech_Behaviors then
+		faction:Unlock("t_signals2")
+	end	
+	if profile.CustomStart_Tech_Nanobots then
+		faction:Unlock("t_signals3")
+	end
 
+	if profile.CustomStart_Tech_BasicStructures then
+		faction:Unlock("t_structures1")
+	end
+	if profile.CustomStart_Tech_BasicRobotics then
+		faction:Unlock("t_robotics10")
+	end	
+	if profile.CustomStart_Tech_RoboticsProduction then
+		faction:Unlock("t_robotics0")
+	end
+
+	if profile.CustomStart_Tech_BasicPower then
+		faction:Unlock("t_power0")
+	end
+	if profile.CustomStart_Tech_PowerTransference then
+		faction:Unlock("t_power10")
+	end	
+	if profile.CustomStart_Tech_ExpandedPower then
+		faction:Unlock("t_power1")
+	end
 
 	-- show intro
 	faction:RunUI("OnFreeplayFactionSpawned")
-	
+
 	faction:Unlock("t_robot_tech_basic")
 	Map.Delay("StartOfGame", 10, { faction = faction, })
 	if Map.GetSettings().tutorial then
