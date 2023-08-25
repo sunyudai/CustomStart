@@ -7,9 +7,9 @@ return UI.New([[
 			</Box>			
 			<Text text="Designed to be playable with only one selected, but you can select more than one." textalign=center/>
 			<VerticalList child_align=left>
-				<HorizontalList><Button id=HQ_CC_Default on_click={on_HQ_CC_Default} width=32 height=32/><Text width=300 text="Mobile Command Center (Default)"/></HorizontalList>
-				<HorizontalList><Button id=HQ_CC_NoDeploy on_click={on_HQ_CC_NoDeploy} width=32 height=32/><Text width=300 text="Mobile Command Center (No Deploy, original by Johan)"/></HorizontalList>
-				<HorizontalList><Button id=HQ_CubStart on_click={on_HQ_CubStart} width=32 height=32/><Text width=300 text="Cub Start (original by Johan)"/></HorizontalList>
+				<HorizontalList><Button id=HQ_CC_Default on_click={on_HQ_CC_Default} width=32 height=32/><Text valign=center width=300 text="Mobile Command Center (Default)"/></HorizontalList>
+				<HorizontalList><Button id=HQ_CC_NoDeploy on_click={on_HQ_CC_NoDeploy} width=32 height=32/><Text valign=center width=300 text="Mobile Command Center (No Deploy, original by Johan)"/></HorizontalList>
+				<HorizontalList><Button id=HQ_CubStart on_click={on_HQ_CubStart} width=32 height=32/><Text valign=center width=300 text="Cub Start (original by Johan)"/></HorizontalList>
 			</VerticalList>
 
 			<Box>
@@ -18,8 +18,35 @@ return UI.New([[
 			<Text text="Select as many as you like." textalign=center/>
 			<VerticalList child_align=left>
 				<HorizontalList><Button id=AddlUnits_DefaultScouts on_click={on_AddlUnits_DefaultScouts} width=32 height=32/><Text width=200 text="Default Scouts"/></HorizontalList>
-				<HorizontalList><Button id=AddlUnits_ExtraWorkers on_click={on_AddlUnits_ExtraWorkers} width=32 height=32/><Text width=200 text="Extra Workers"/></HorizontalList>
-				<HorizontalList><Button id=AddlUnits_StripMiners on_click={on_AddlUnits_StripMiners} width=32 height=32/><Text width=200 text="Strip Miners"/></HorizontalList>
+				<HorizontalList>
+					<Slider id=AddlUnits_ExtraWorkers_Slider height=36 width=220 min=0 max=10 step=1 on_change={on_AddlUnits_ExtraWorkers_changed}/>
+					<Text id=AddlUnits_ExtraWorkers width=30 fill=false text="" valign=center textalign=center/>
+					<Text width=200 text="Extra Workers" valign=center textalign=left/>
+				</HorizontalList>
+					<HorizontalList>
+						<Text width=120 text="Small (max 1):" textalign=right/>
+						<Button id=AddlUnits_ExtraWorkers_AddMiner on_click={on_AddlUnits_ExtraWorkers_AddMiner} width=24 height=24/><Text width=90 text="+Miner"/>
+						<Button id=AddlUnits_ExtraWorkers_AddAdvMiner on_click={on_AddlUnits_ExtraWorkers_AddAdvMiner} width=24 height=24/><Text width=90 text="+AdvMiner"/>
+						<Button id=AddlUnits_ExtraWorkers_AddSolarCell on_click={on_AddlUnits_ExtraWorkers_AddSolarCell} width=24 height=24/><Text width=90 text="+SolarCell"/>
+						<Button id=AddlUnits_ExtraWorkers_AddTurret on_click={on_AddlUnits_ExtraWorkers_AddTurret} width=24 height=24/><Text width=90 text="+Turret"/>
+					</HorizontalList>
+					<HorizontalList>
+						<Text width=120 text="Internal (max 2):" textalign=right/>
+						<Button id=AddlUnits_ExtraWorkers_AddBehavior on_click={on_AddlUnits_ExtraWorkers_AddBehavior} width=24 height=24/><Text width=90 text="+Behavior"/>
+						<Button id=AddlUnits_ExtraWorkers_AddCapacitor on_click={on_AddlUnits_ExtraWorkers_AddCapacitor} width=24 height=24/><Text width=90 text="+Capacitor"/>
+						<Button id=AddlUnits_ExtraWorkers_AddPowerCell on_click={on_AddlUnits_ExtraWorkers_AddPowerCell} width=24 height=24/><Text width=90 text="+PowerCell"/>
+					</HorizontalList>
+				<HorizontalList>
+					<Slider id=AddlUnits_ExtraDashbots_Slider height=36 width=220 min=0 max=10 step=1 on_change={on_AddlUnits_ExtraDashbots_changed}/>
+					<Text id=AddlUnits_ExtraDashbots width=30 fill=false text="" valign=center textalign=center/>
+					<Text width=200 text="Extra Dashbots" valign=center textalign=left/>
+				</HorizontalList>
+				<HorizontalList>
+					<Slider id=AddlUnits_ExtraTwinbots_Slider height=36 width=220 min=0 max=10 step=1 on_change={on_AddlUnits_ExtraTwinbots_changed}/>
+					<Text id=AddlUnits_ExtraTwinbots width=30 fill=false text="" valign=center textalign=center/>
+					<Text width=200 text="Extra Twinbots" valign=center textalign=left/>
+				</HorizontalList>
+				<HorizontalList><Button id=AddlUnits_StripMiners on_click={on_AddlUnits_StripMiners} width=32 height=32/><Text width=200 text="Cheaty Strip Miners"/></HorizontalList>
 			</VerticalList>
 
 			<Box>
@@ -28,56 +55,28 @@ return UI.New([[
 			<Text text="Select as many as you like." textalign=center/>
 			<HorizontalList>
 				<VerticalList child_align=center>				
-					<Text text="Signals" style=h2 textalign=center/>
-					<HorizontalList child_align=left><Button id=Tech_BasicSignals on_click={on_Tech_BasicSignals} width=30 height=30/><Text width=170 text="Basic Signals"/></HorizontalList>
-					<HorizontalList child_align=left><Button id=Tech_Behaviors on_click={on_Tech_Behaviors} width=30 height=30/><Text width=170 text="Behaviors"/></HorizontalList>
-					<HorizontalList child_align=left><Button id=Tech_Nanobots on_click={on_Tech_Nanobots} width=30 height=30/><Text width=170 text="Nanobots"/></HorizontalList>
+					<Text text="Signals" style=h1 textalign=center/>
+					<HorizontalList child_align=left><Button id=Tech_BasicSignals on_click={on_Tech_BasicSignals} width=30 height=30/><Text valign=center width=170 text="Basic Signals"/></HorizontalList>
+					<HorizontalList child_align=left><Button id=Tech_Behaviors on_click={on_Tech_Behaviors} width=30 height=30/><Text valign=center width=170 text="Behaviors"/></HorizontalList>
+					<HorizontalList child_align=left><Button id=Tech_Nanobots on_click={on_Tech_Nanobots} width=30 height=30/><Text valign=center width=170 text="Nanobots"/></HorizontalList>
 				</VerticalList>		
 				<VerticalList child_align=center>
-					<Text text="Structures" style=h2 textalign=center/>		
-					<HorizontalList child_align=left><Button id=Tech_BasicStructures on_click={on_Tech_BasicStructures} width=30 height=30/><Text width=170 text="Basic Structures"/></HorizontalList>
-					<HorizontalList child_align=left><Button id=Tech_BasicRobotics on_click={on_Tech_BasicRobotics} width=30 height=30/><Text width=170 text="Basic Robotics"/></HorizontalList>
-					<HorizontalList child_align=left><Button id=Tech_RoboticsProduction on_click={on_Tech_RoboticsProduction} width=30 height=30/><Text width=170 text="Robotics Production"/></HorizontalList>
+					<Text text="Structures" style=h1 textalign=center/>		
+					<HorizontalList child_align=left><Button id=Tech_BasicStructures on_click={on_Tech_BasicStructures} width=30 height=30/><Text valign=center width=170 text="Basic Structures"/></HorizontalList>
+					<HorizontalList child_align=left><Button id=Tech_BasicRobotics on_click={on_Tech_BasicRobotics} width=30 height=30/><Text valign=center width=170 text="Basic Robotics"/></HorizontalList>
+					<HorizontalList child_align=left><Button id=Tech_RoboticsProduction on_click={on_Tech_RoboticsProduction} width=30 height=30/><Text valign=center width=170 text="Robotics Production"/></HorizontalList>
 				</VerticalList>			
 				<VerticalList child_align=center>
-					<Text text="Power" style=h2 textalign=center/>
-					<HorizontalList child_align=left><Button id=Tech_BasicPower on_click={on_Tech_BasicPower} width=30 height=30/><Text width=170 text="Basic Power"/></HorizontalList>
-					<HorizontalList child_align=left><Button id=Tech_PowerTransference on_click={on_Tech_PowerTransference} width=30 height=30/><Text width=170 text="Power Transference"/></HorizontalList>
-					<HorizontalList child_align=left><Button id=Tech_ExpandedPower on_click={on_Tech_ExpandedPower} width=30 height=30/><Text width=170 text="Expanded Power"/></HorizontalList>
+					<Text text="Power" style=h1 textalign=center/>
+					<HorizontalList child_align=left><Button id=Tech_BasicPower on_click={on_Tech_BasicPower} width=30 height=30/><Text valign=center width=170 text="Basic Power"/></HorizontalList>
+					<HorizontalList child_align=left><Button id=Tech_PowerTransference on_click={on_Tech_PowerTransference} width=30 height=30/><Text valign=center width=170 text="Power Transference"/></HorizontalList>
+					<HorizontalList child_align=left><Button id=Tech_ExpandedPower on_click={on_Tech_ExpandedPower} width=30 height=30/><Text width=170 valign=center text="Expanded Power"/></HorizontalList>
 				</VerticalList>
 			</HorizontalList>
 	</VerticalList>
 	]],
 	{
 	construct = function(menu)
-
-		-- ***************************************************************************************************************
-		-- set defaults
-
-
-
-
-		-- profile.CustomStart_HQ_CC_Default = profile.CustomStart_HQ_CC_Default or false
-		-- profile.CustomStart_HQ_CC_NoDeploy = profile.CustomStart_HQ_CC_NoDeploy or false
-		-- profile.CustomStart_HQ_CubStart = profile.CustomStart_HQ_CubStart or false
-
-		-- profile.CustomStart_AddlUnits_DefaultScouts = profile.CustomStart_AddlUnits_DefaultScouts or false
-		-- profile.CustomStart_AddlUnits_ExtraWorkers = profile.CustomStart_AddlUnits_ExtraWorkers or false
-		-- profile.CustomStart_AddlUnits_StripMiners = profile.CustomStart_AddlUnits_StripMiners or false
-
-		-- profile.CustomStart_Tech_BasicSignals = profile.CustomStart_Tech_BasicSignals or false --t_signals1
-		-- profile.CustomStart_Tech_Behaviors = profile.CustomStart_Tech_Behaviors or false --t_signals2
-		-- profile.CustomStart_Tech_Nanobots = profile.CustomStart_Tech_Nanobots or false --t_signals3
-	
-		-- profile.CustomStart_Tech_BasicStructures = profile.CustomStart_Tech_BasicStructures or false --t_structures1
-		-- profile.CustomStart_Tech_BasicRobotics = profile.CustomStart_Tech_BasicRobotics or false --t_robotics10
-		-- profile.CustomStart_Tech_RoboticsProduction = profile.CustomStart_Tech_RoboticsProduction or false --t_robotics0
-	
-		-- profile.CustomStart_Tech_BasicPower = profile.CustomStart_Tech_BasicPower or false --t_power0
-		-- profile.CustomStart_Tech_PowerTransference = profile.CustomStart_Tech_PowerTransference or false --t_power10
-		-- profile.CustomStart_Tech_ExpandedPower = profile.CustomStart_Tech_ExpandedPower or false --t_power1
-
-        -- ***************************************************************************************************************
 
 		-- HQ options
 		menu.HQ_CC_Default.icon = profile.CustomStart_HQ_CC_Default and "icon_small_confirm" or nil
@@ -94,8 +93,39 @@ return UI.New([[
 		menu.AddlUnits_DefaultScouts.icon = profile.CustomStart_AddlUnits_DefaultScouts and "icon_small_confirm" or nil
 		menu.AddlUnits_DefaultScouts.active = profile.CustomStart_AddlUnits_DefaultScouts
 
-		menu.AddlUnits_ExtraWorkers.icon = profile.CustomStart_AddlUnits_ExtraWorkers and "icon_small_confirm" or nil
-		menu.AddlUnits_ExtraWorkers.active = profile.CustomStart_AddlUnits_ExtraWorkers
+		profile.CustomStart_AddlUnits_ExtraWorkers = profile.CustomStart_AddlUnits_ExtraWorkers or 0
+        menu.AddlUnits_ExtraWorkers.text = tostring(profile.CustomStart_AddlUnits_ExtraWorkers)
+        menu.AddlUnits_ExtraWorkers_Slider.value = profile.CustomStart_AddlUnits_ExtraWorkers
+
+		menu.AddlUnits_ExtraWorkers_AddMiner.icon = profile.CustomStart_AddlUnits_ExtraWorkers_AddMiner and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraWorkers_AddMiner.active = profile.CustomStart_AddlUnits_ExtraWorkers_AddMiner
+
+		menu.AddlUnits_ExtraWorkers_AddAdvMiner.icon = profile.CustomStart_AddlUnits_ExtraWorkers_AddAdvMiner and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraWorkers_AddAdvMiner.active = profile.CustomStart_AddlUnits_ExtraWorkers_AddAdvMiner
+
+		menu.AddlUnits_ExtraWorkers_AddSolarCell.icon = profile.CustomStart_AddlUnits_ExtraWorkers_AddSolarCell and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraWorkers_AddSolarCell.active = profile.CustomStart_AddlUnits_ExtraWorkers_AddSolarCell
+
+		menu.AddlUnits_ExtraWorkers_AddTurret.icon = profile.CustomStart_AddlUnits_ExtraWorkers_AddTurret and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraWorkers_AddTurret.active = profile.CustomStart_AddlUnits_ExtraWorkers_AddTurret
+
+		menu.AddlUnits_ExtraWorkers_AddBehavior.icon = profile.CustomStart_AddlUnits_ExtraWorkers_AddBehavior and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraWorkers_AddBehavior.active = profile.CustomStart_AddlUnits_ExtraWorkers_AddBehavior
+
+		menu.AddlUnits_ExtraWorkers_AddCapacitor.icon = profile.CustomStart_AddlUnits_ExtraWorkers_AddCapacitor and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraWorkers_AddCapacitor.active = profile.CustomStart_AddlUnits_ExtraWorkers_AddCapacitor
+
+		menu.AddlUnits_ExtraWorkers_AddPowerCell.icon = profile.CustomStart_AddlUnits_ExtraWorkers_AddPowerCell and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraWorkers_AddPowerCell.active = profile.CustomStart_AddlUnits_ExtraWorkers_AddPowerCell
+
+
+		profile.CustomStart_AddlUnits_ExtraDashbots = profile.CustomStart_AddlUnits_ExtraDashbots or 0
+        menu.AddlUnits_ExtraDashbots.text = tostring(profile.CustomStart_AddlUnits_ExtraDashbots)
+        menu.AddlUnits_ExtraDashbots_Slider.value = profile.CustomStart_AddlUnits_ExtraDashbots
+
+		profile.CustomStart_AddlUnits_ExtraTwinbots = profile.CustomStart_AddlUnits_ExtraTwinbots or 0
+        menu.AddlUnits_ExtraTwinbots.text = tostring(profile.CustomStart_AddlUnits_ExtraTwinbots)
+        menu.AddlUnits_ExtraTwinbots_Slider.value = profile.CustomStart_AddlUnits_ExtraTwinbots
 
 		menu.AddlUnits_StripMiners.icon = profile.CustomStart_AddlUnits_StripMiners and "icon_small_confirm" or nil
 		menu.AddlUnits_StripMiners.active = profile.CustomStart_AddlUnits_StripMiners
@@ -160,12 +190,65 @@ return UI.New([[
 		chk.active = value
 		profile.CustomStart_AddlUnits_DefaultScouts = value
 	end,
-	on_AddlUnits_ExtraWorkers = function(menu, chk)
+
+	on_AddlUnits_ExtraWorkers_changed = function(menu, slider)
+        profile.CustomStart_AddlUnits_ExtraWorkers = slider.value
+        menu.AddlUnits_ExtraWorkers.text = tostring(slider.value)
+	end,
+	on_AddlUnits_ExtraWorkers_AddMiner = function(menu, chk)
 		local value = not chk.active
 		chk.icon = value and "icon_small_confirm" or nil
 		chk.active = value
-		profile.CustomStart_AddlUnits_ExtraWorkers = value
+		profile.CustomStart_AddlUnits_ExtraWorkers_AddMiner = value
 	end,
+	on_AddlUnits_ExtraWorkers_AddAdvMiner = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraWorkers_AddAdvMiner = value
+	end,
+	on_AddlUnits_ExtraWorkers_AddSolarCell = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraWorkers_AddSolarCell = value
+	end,
+	on_AddlUnits_ExtraWorkers_AddTurret = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraWorkers_AddTurret = value
+	end,
+	on_AddlUnits_ExtraWorkers_AddBehavior = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraWorkers_AddBehavior = value
+	end,
+	on_AddlUnits_ExtraWorkers_AddCapacitor = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraWorkers_AddCapacitor = value
+	end,
+	on_AddlUnits_ExtraWorkers_AddPowerCell = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraWorkers_AddPowerCell = value
+	end,
+	
+
+
+	on_AddlUnits_ExtraDashbots_changed = function(menu, slider)
+        profile.CustomStart_AddlUnits_ExtraDashbots = slider.value
+        menu.AddlUnits_ExtraDashbots.text = tostring(slider.value)
+	end,
+	on_AddlUnits_ExtraTwinbots_changed = function(menu, slider)
+        profile.CustomStart_AddlUnits_ExtraTwinbots = slider.value
+        menu.AddlUnits_ExtraTwinbots.text = tostring(slider.value)
+	end,
+
 	on_AddlUnits_StripMiners = function(menu, chk)
 		local value = not chk.active
 		chk.icon = value and "icon_small_confirm" or nil

@@ -1,11 +1,11 @@
 {
     "id": "CustomStart",
     "name": "CustomStart",
-    "version_name": "0.17",
-    "version_code": 17,
+    "version_name": "0.20",
+    "version_code": 20,
     "author": "SunYuDai",
     "homepage": "https://www.desyncedgame.com/",
-    "description": "Uses Mod Options to configure your start, includes some option sets and inspired by Johan's various [...]Start mods",
+    "description": "Uses Mod Options to configure your start, includes some option sets from- and inspired by- Johan's various [...]Start mods",
     "options": "options.lua",
     "packages": {
         "Scenario": {
