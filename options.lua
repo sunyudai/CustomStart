@@ -22,24 +22,39 @@ return UI.New([[
 					<Slider id=AddlUnits_ExtraWorkers_Slider height=36 width=220 min=0 max=10 step=1 on_change={on_AddlUnits_ExtraWorkers_changed}/>
 					<Text id=AddlUnits_ExtraWorkers width=30 fill=false text="" valign=center textalign=center/>
 					<Text width=200 text="Extra Workers" valign=center textalign=left/>
-				</HorizontalList>
-					<HorizontalList>
-						<Text width=120 text="Small (max 1):" textalign=right/>
-						<Button id=AddlUnits_ExtraWorkers_AddMiner on_click={on_AddlUnits_ExtraWorkers_AddMiner} width=24 height=24/><Text width=90 text="+Miner"/>
-						<Button id=AddlUnits_ExtraWorkers_AddAdvMiner on_click={on_AddlUnits_ExtraWorkers_AddAdvMiner} width=24 height=24/><Text width=90 text="+AdvMiner"/>
-						<Button id=AddlUnits_ExtraWorkers_AddSolarCell on_click={on_AddlUnits_ExtraWorkers_AddSolarCell} width=24 height=24/><Text width=90 text="+SolarCell"/>
-						<Button id=AddlUnits_ExtraWorkers_AddTurret on_click={on_AddlUnits_ExtraWorkers_AddTurret} width=24 height=24/><Text width=90 text="+Turret"/>
 					</HorizontalList>
+						<HorizontalList>
+							<Text width=120 text="Small (max 1):" textalign=right/>
+							<Button id=AddlUnits_ExtraWorkers_AddMiner on_click={on_AddlUnits_ExtraWorkers_AddMiner} width=24 height=24/><Text width=90 text="+Miner"/>
+							<Button id=AddlUnits_ExtraWorkers_AddAdvMiner on_click={on_AddlUnits_ExtraWorkers_AddAdvMiner} width=24 height=24/><Text width=90 text="+AdvMiner"/>
+							<Button id=AddlUnits_ExtraWorkers_AddSolarCell on_click={on_AddlUnits_ExtraWorkers_AddSolarCell} width=24 height=24/><Text width=90 text="+SolarCell"/>
+							<Button id=AddlUnits_ExtraWorkers_AddTurret on_click={on_AddlUnits_ExtraWorkers_AddTurret} width=24 height=24/><Text width=90 text="+Turret"/>
+						</HorizontalList>
+						<HorizontalList>
+							<Text width=120 text="Internal (max 2):" textalign=right/>
+							<Button id=AddlUnits_ExtraWorkers_AddBehavior on_click={on_AddlUnits_ExtraWorkers_AddBehavior} width=24 height=24/><Text width=90 text="+Behavior"/>
+							<Button id=AddlUnits_ExtraWorkers_AddCapacitor on_click={on_AddlUnits_ExtraWorkers_AddCapacitor} width=24 height=24/><Text width=90 text="+Capacitor"/>
+							<Button id=AddlUnits_ExtraWorkers_AddPowerCell on_click={on_AddlUnits_ExtraWorkers_AddPowerCell} width=24 height=24/><Text width=90 text="+PowerCell"/>
+						</HorizontalList>
 					<HorizontalList>
-						<Text width=120 text="Internal (max 2):" textalign=right/>
-						<Button id=AddlUnits_ExtraWorkers_AddBehavior on_click={on_AddlUnits_ExtraWorkers_AddBehavior} width=24 height=24/><Text width=90 text="+Behavior"/>
-						<Button id=AddlUnits_ExtraWorkers_AddCapacitor on_click={on_AddlUnits_ExtraWorkers_AddCapacitor} width=24 height=24/><Text width=90 text="+Capacitor"/>
-						<Button id=AddlUnits_ExtraWorkers_AddPowerCell on_click={on_AddlUnits_ExtraWorkers_AddPowerCell} width=24 height=24/><Text width=90 text="+PowerCell"/>
-					</HorizontalList>
-				<HorizontalList>
 					<Slider id=AddlUnits_ExtraDashbots_Slider height=36 width=220 min=0 max=10 step=1 on_change={on_AddlUnits_ExtraDashbots_changed}/>
 					<Text id=AddlUnits_ExtraDashbots width=30 fill=false text="" valign=center textalign=center/>
 					<Text width=200 text="Extra Dashbots" valign=center textalign=left/>
+					</HorizontalList>
+					<HorizontalList>
+						<Text width=120 text="Small (max 1):" textalign=right/>
+						<Button id=AddlUnits_ExtraDashbots_AddMiner on_click={on_AddlUnits_ExtraDashbots_AddMiner} width=24 height=24/><Text width=90 text="+Miner"/>
+						<Button id=AddlUnits_ExtraDashbots_AddAdvMiner on_click={on_AddlUnits_ExtraDashbots_AddAdvMiner} width=24 height=24/><Text width=90 text="+AdvMiner"/>
+						<Button id=AddlUnits_ExtraDashbots_AddSolarCell on_click={on_AddlUnits_ExtraDashbots_AddSolarCell} width=24 height=24/><Text width=90 text="+SolarCell"/>
+						<Button id=AddlUnits_ExtraDashbots_AddTurret on_click={on_AddlUnits_ExtraDashbots_AddTurret} width=24 height=24/><Text width=90 text="+Turret"/>
+					</HorizontalList>
+					<HorizontalList>
+						<Text width=120 text="Internal (max 2):" textalign=right/>
+						<Button id=AddlUnits_ExtraDashbots_AddBehavior on_click={on_AddlUnits_ExtraDashbots_AddBehavior} width=24 height=24/><Text width=90 text="+Behavior"/>
+						<Button id=AddlUnits_ExtraDashbots_AddCapacitor on_click={on_AddlUnits_ExtraDashbots_AddCapacitor} width=24 height=24/><Text width=90 text="+Capacitor"/>
+						<Button id=AddlUnits_ExtraDashbots_AddPowerCell on_click={on_AddlUnits_ExtraDashbots_AddPowerCell} width=24 height=24/><Text width=90 text="+PowerCell"/>
+					</HorizontalList>
+				<HorizontalList>
 				</HorizontalList>
 				<HorizontalList>
 					<Slider id=AddlUnits_ExtraTwinbots_Slider height=36 width=220 min=0 max=10 step=1 on_change={on_AddlUnits_ExtraTwinbots_changed}/>
@@ -121,7 +136,28 @@ return UI.New([[
 
 		profile.CustomStart_AddlUnits_ExtraDashbots = profile.CustomStart_AddlUnits_ExtraDashbots or 0
         menu.AddlUnits_ExtraDashbots.text = tostring(profile.CustomStart_AddlUnits_ExtraDashbots)
-        menu.AddlUnits_ExtraDashbots_Slider.value = profile.CustomStart_AddlUnits_ExtraDashbots
+        menu.AddlUnits_ExtraDashbots_Slider.value = profile.CustomStart_AddlUnits_ExtraDashbots		
+
+		menu.AddlUnits_ExtraDashbots_AddMiner.icon = profile.CustomStart_AddlUnits_ExtraDashbots_AddMiner and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraDashbots_AddMiner.active = profile.CustomStart_AddlUnits_ExtraDashbots_AddMiner
+
+		menu.AddlUnits_ExtraDashbots_AddAdvMiner.icon = profile.CustomStart_AddlUnits_ExtraDashbots_AddAdvMiner and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraDashbots_AddAdvMiner.active = profile.CustomStart_AddlUnits_ExtraDashbots_AddAdvMiner
+
+		menu.AddlUnits_ExtraDashbots_AddSolarCell.icon = profile.CustomStart_AddlUnits_ExtraDashbots_AddSolarCell and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraDashbots_AddSolarCell.active = profile.CustomStart_AddlUnits_ExtraDashbots_AddSolarCell
+
+		menu.AddlUnits_ExtraDashbots_AddTurret.icon = profile.CustomStart_AddlUnits_ExtraDashbots_AddTurret and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraDashbots_AddTurret.active = profile.CustomStart_AddlUnits_ExtraDashbots_AddTurret
+
+		menu.AddlUnits_ExtraDashbots_AddBehavior.icon = profile.CustomStart_AddlUnits_ExtraDashbots_AddBehavior and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraDashbots_AddBehavior.active = profile.CustomStart_AddlUnits_ExtraDashbots_AddBehavior
+
+		menu.AddlUnits_ExtraDashbots_AddCapacitor.icon = profile.CustomStart_AddlUnits_ExtraDashbots_AddCapacitor and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraDashbots_AddCapacitor.active = profile.CustomStart_AddlUnits_ExtraDashbots_AddCapacitor
+
+		menu.AddlUnits_ExtraDashbots_AddPowerCell.icon = profile.CustomStart_AddlUnits_ExtraDashbots_AddPowerCell and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraDashbots_AddPowerCell.active = profile.CustomStart_AddlUnits_ExtraDashbots_AddPowerCell
 
 		profile.CustomStart_AddlUnits_ExtraTwinbots = profile.CustomStart_AddlUnits_ExtraTwinbots or 0
         menu.AddlUnits_ExtraTwinbots.text = tostring(profile.CustomStart_AddlUnits_ExtraTwinbots)
@@ -237,13 +273,54 @@ return UI.New([[
 		chk.active = value
 		profile.CustomStart_AddlUnits_ExtraWorkers_AddPowerCell = value
 	end,
-	
-
 
 	on_AddlUnits_ExtraDashbots_changed = function(menu, slider)
         profile.CustomStart_AddlUnits_ExtraDashbots = slider.value
         menu.AddlUnits_ExtraDashbots.text = tostring(slider.value)
 	end,
+	on_AddlUnits_ExtraDashbots_AddMiner = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraDashbots_AddMiner = value
+	end,
+	on_AddlUnits_ExtraDashbots_AddAdvMiner = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraDashbots_AddAdvMiner = value
+	end,
+	on_AddlUnits_ExtraDashbots_AddSolarCell = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraDashbots_AddSolarCell = value
+	end,
+	on_AddlUnits_ExtraDashbots_AddTurret = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraDashbots_AddTurret = value
+	end,
+	on_AddlUnits_ExtraDashbots_AddBehavior = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraDashbots_AddBehavior = value
+	end,
+	on_AddlUnits_ExtraDashbots_AddCapacitor = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraDashbots_AddCapacitor = value
+	end,
+	on_AddlUnits_ExtraDashbots_AddPowerCell = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraDashbots_AddPowerCell = value
+	end,
+
 	on_AddlUnits_ExtraTwinbots_changed = function(menu, slider)
         profile.CustomStart_AddlUnits_ExtraTwinbots = slider.value
         menu.AddlUnits_ExtraTwinbots.text = tostring(slider.value)

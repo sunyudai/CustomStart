@@ -134,6 +134,47 @@ function package:on_player_faction_spawn(faction, is_respawn)
 			worker:Place(loc.x+3+botsMade, loc.y)
 			worker.disconnected = false
 
+			local addedSmall = false
+			if profile.CustomStart_AddlUnits_ExtraDashbots_AddMiner then
+				worker:AddComponent("c_miner")
+				addedSmall = true
+			end
+			if profile.CustomStart_AddlUnits_ExtraDashbots_AddAdvMiner then
+				if not addedSmall then
+					worker:AddComponent("c_adv_miner")
+					addedSmall = true
+				else
+					worker:AddItem("c_adv_miner", 1)
+				end
+			end
+			if profile.CustomStart_AddlUnits_ExtraDashbots_AddSolarCell then
+				if not addedSmall then
+					worker:AddComponent("c_solar_cell")
+					addedSmall = true
+				else
+					worker:AddItem("c_solar_cell", 1)
+				end
+			end
+			if profile.CustomStart_AddlUnits_ExtraDashbots_AddTurret then
+				if not addedSmall then
+					worker:AddComponent("c_portable_turret")
+					addedSmall = true
+				else
+					worker:AddItem("c_portable_turret", 1)
+				end
+			end
+
+			if profile.CustomStart_AddlUnits_ExtraDashbots_AddBehavior then
+				worker:AddComponent("c_behavior")
+			end
+			if profile.CustomStart_AddlUnits_ExtraDashbots_AddCapacitor then
+				worker:AddComponent("c_capacitor")
+			end
+			if profile.CustomStart_AddlUnits_ExtraDashbots_AddPowerCell then
+				worker:AddComponent("c_power_cell")
+			end
+
+
 			botsMade = botsMade + 1
 		end
 	end
