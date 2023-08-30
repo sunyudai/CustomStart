@@ -18,14 +18,17 @@ Should be compatible with all other mods, but since it is a scenario it can't be
 - Mobile Command Center without deploy componant (for those who want to play a nomad game)
 - Cub (A cub that starts with a fabricator, solar cell, and an expanded storage. Hardmode.)
 
+**Choose Extra starting Unit presets:**
+
+- Default Starting Scouts: Same as vanilla start.
+- Cheaty Stripminers: a pack of 6 twinbots that come pre-loaded with advanced miners, behaviors, and power cells.
+
 **Choose Extra starting Units:**
 
-- Extra Workers, 0-10
- - With options to start each one with miners, advanced miners, solar panel, turrets, behaviors, capacitors, and/or power cells. (to the limit of the slots the Worker has)
-- Extra Dashbots, 0-10
- - Same options as Workers
-- Extra Twinbots, 0-10
-- Cheaty Stripminers: a pack of 6 twinbots that ocme pre-loaded with advanced miners, behaviors, and power cells.
+- Extra Workers, 0-20 - With options to start each one with miners, advanced miners, solar panel, turrets, behaviors, capacitors, and/or power cells. (to the limit of the slots the Worker has)
+- Extra Dashbots, 0-20 - Same options as Workers
+- Extra Twinbots, 0-20 - Same options as Workers
+- Extra Scouts, 0-20 - Same options as Workers
 
 **Choose starting Technologies:**
 
@@ -34,7 +37,6 @@ Should be compatible with all other mods, but since it is a scenario it can't be
 ----
 # Future Plans
 
-- Add starting loadout options to dashbots and twinbots
 - Home unit additional loadout(extra fabricator, assemblers, research pylon, more?)
 - Figure out how to add starting drones.
 - Clearly mark Challenge mode, re-balance, and cheat mode options
