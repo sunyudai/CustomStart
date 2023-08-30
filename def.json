@@ -1,8 +1,8 @@
 {
     "id": "CustomStart",
     "name": "CustomStart",
-    "version_name": "0.21",
-    "version_code": 21,
+    "version_name": "0.23",
+    "version_code": 23,
     "author": "SunYuDai",
     "homepage": "https://www.desyncedgame.com/",
     "description": "Uses Mod Options to configure your start, includes some option sets from- and inspired by- Johan's various [...]Start mods",
