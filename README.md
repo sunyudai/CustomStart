@@ -1,5 +1,5 @@
 # Custom Start
-**Current Version: v0.21**
+**Current Version: v0.23**
 
 Choose starting techs, bots, and home unit.
 
