@@ -29,6 +29,7 @@ return UI.New([[
 			<Text text="Additional Units" style=hl textalign=center/>
 		</Box>
 		<Text text="Select as many as you like." textalign=center/>
+		<Text text="Note: Units with 2 small slots will get the first componant added to both slots" textalign=center/>
 		<VerticalList child_align=left>
 			<HorizontalList>
 				<Slider id=AddlUnits_ExtraWorkers_Slider height=36 width=320 min=0 max=20 step=1 on_change={on_AddlUnits_ExtraWorkers_changed}/>
@@ -105,6 +106,25 @@ return UI.New([[
 				<Button id=AddlUnits_ExtraScouts_AddCapacitor on_click={on_AddlUnits_ExtraScouts_AddCapacitor} width=24 height=24/><Text width=90 text="+Capacitor"/>
 				<Button id=AddlUnits_ExtraScouts_AddPowerCell on_click={on_AddlUnits_ExtraScouts_AddPowerCell} width=24 height=24/><Text width=90 text="+PowerCell"/>
 			</HorizontalList>
+			<Spacer height=12/>
+			<HorizontalList>
+				<Slider id=AddlUnits_ExtraMCCs_Slider height=36 width=320 min=0 max=20 step=1 on_change={on_AddlUnits_ExtraMCCs_changed}/>
+				<Text id=AddlUnits_ExtraMCCs width=30 fill=false text="" valign=center textalign=center/>
+				<Text width=200 text="Extra MCCs (+hidden capacitor)" valign=center textalign=left/>
+			</HorizontalList>
+			<HorizontalList>
+				<Text width=120 text="Small (max 1):" textalign=right/>
+				<Button id=AddlUnits_ExtraMCCs_AddMiner on_click={on_AddlUnits_ExtraMCCs_AddMiner} width=24 height=24/><Text width=90 text="+Miner"/>
+				<Button id=AddlUnits_ExtraMCCs_AddAdvMiner on_click={on_AddlUnits_ExtraMCCs_AddAdvMiner} width=24 height=24/><Text width=90 text="+AdvMiner"/>
+				<Button id=AddlUnits_ExtraMCCs_AddSolarCell on_click={on_AddlUnits_ExtraMCCs_AddSolarCell} width=24 height=24/><Text width=90 text="+SolarCell"/>
+				<Button id=AddlUnits_ExtraMCCs_AddTurret on_click={on_AddlUnits_ExtraMCCs_AddTurret} width=24 height=24/><Text width=90 text="+Turret"/>
+			</HorizontalList>
+			<HorizontalList>
+				<Text width=120 text="Internal (max 2):" textalign=right/>
+				<Button id=AddlUnits_ExtraMCCs_AddBehavior on_click={on_AddlUnits_ExtraMCCs_AddBehavior} width=24 height=24/><Text width=90 text="+Behavior"/>
+				<Button id=AddlUnits_ExtraMCCs_AddCapacitor on_click={on_AddlUnits_ExtraMCCs_AddCapacitor} width=24 height=24/><Text width=90 text="+Capacitor"/>
+				<Button id=AddlUnits_ExtraMCCs_AddPowerCell on_click={on_AddlUnits_ExtraMCCs_AddPowerCell} width=24 height=24/><Text width=90 text="+PowerCell"/>
+			</HorizontalList>
 		</VerticalList>
 
 		<Box>
@@ -147,10 +167,14 @@ return UI.New([[
 		menu.HQ_CubStart.active = profile.CustomStart_HQ_CubStart
 
 
-		-- Additional Unit options
+		-- Additional Unit presets
 		menu.AddlUnits_DefaultScouts.icon = profile.CustomStart_AddlUnits_DefaultScouts and "icon_small_confirm" or nil
 		menu.AddlUnits_DefaultScouts.active = profile.CustomStart_AddlUnits_DefaultScouts
+		
+		menu.AddlUnits_StripMiners.icon = profile.CustomStart_AddlUnits_StripMiners and "icon_small_confirm" or nil
+		menu.AddlUnits_StripMiners.active = profile.CustomStart_AddlUnits_StripMiners
 
+		-- Additional Unit options
 		profile.CustomStart_AddlUnits_ExtraWorkers = profile.CustomStart_AddlUnits_ExtraWorkers or 0
         menu.AddlUnits_ExtraWorkers.text = tostring(profile.CustomStart_AddlUnits_ExtraWorkers)
         menu.AddlUnits_ExtraWorkers_Slider.value = profile.CustomStart_AddlUnits_ExtraWorkers
@@ -253,10 +277,32 @@ return UI.New([[
 		menu.AddlUnits_ExtraScouts_AddPowerCell.icon = profile.CustomStart_AddlUnits_ExtraScouts_AddPowerCell and "icon_small_confirm" or nil
 		menu.AddlUnits_ExtraScouts_AddPowerCell.active = profile.CustomStart_AddlUnits_ExtraScouts_AddPowerCell
 
+		
+		profile.CustomStart_AddlUnits_ExtraMCCs = profile.CustomStart_AddlUnits_ExtraMCCs or 0
+        menu.AddlUnits_ExtraMCCs.text = tostring(profile.CustomStart_AddlUnits_ExtraMCCs)
+        menu.AddlUnits_ExtraMCCs_Slider.value = profile.CustomStart_AddlUnits_ExtraMCCs
 
+		menu.AddlUnits_ExtraMCCs_AddMiner.icon = profile.CustomStart_AddlUnits_ExtraMCCs_AddMiner and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraMCCs_AddMiner.active = profile.CustomStart_AddlUnits_ExtraMCCs_AddMiner
 
-		menu.AddlUnits_StripMiners.icon = profile.CustomStart_AddlUnits_StripMiners and "icon_small_confirm" or nil
-		menu.AddlUnits_StripMiners.active = profile.CustomStart_AddlUnits_StripMiners
+		menu.AddlUnits_ExtraMCCs_AddAdvMiner.icon = profile.CustomStart_AddlUnits_ExtraMCCs_AddAdvMiner and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraMCCs_AddAdvMiner.active = profile.CustomStart_AddlUnits_ExtraMCCs_AddAdvMiner
+
+		menu.AddlUnits_ExtraMCCs_AddSolarCell.icon = profile.CustomStart_AddlUnits_ExtraMCCs_AddSolarCell and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraMCCs_AddSolarCell.active = profile.CustomStart_AddlUnits_ExtraMCCs_AddSolarCell
+
+		menu.AddlUnits_ExtraMCCs_AddTurret.icon = profile.CustomStart_AddlUnits_ExtraMCCs_AddTurret and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraMCCs_AddTurret.active = profile.CustomStart_AddlUnits_ExtraMCCs_AddTurret
+
+		menu.AddlUnits_ExtraMCCs_AddBehavior.icon = profile.CustomStart_AddlUnits_ExtraMCCs_AddBehavior and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraMCCs_AddBehavior.active = profile.CustomStart_AddlUnits_ExtraMCCs_AddBehavior
+
+		menu.AddlUnits_ExtraMCCs_AddCapacitor.icon = profile.CustomStart_AddlUnits_ExtraMCCs_AddCapacitor and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraMCCs_AddCapacitor.active = profile.CustomStart_AddlUnits_ExtraMCCs_AddCapacitor
+
+		menu.AddlUnits_ExtraMCCs_AddPowerCell.icon = profile.CustomStart_AddlUnits_ExtraMCCs_AddPowerCell and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraMCCs_AddPowerCell.active = profile.CustomStart_AddlUnits_ExtraMCCs_AddPowerCell
+
 
 
 		-- Tech Options
@@ -506,6 +552,56 @@ return UI.New([[
 		chk.active = value
 		profile.CustomStart_AddlUnits_ExtraScouts_AddPowerCell = value
 	end,
+
+
+
+	on_AddlUnits_ExtraMCCs_changed = function(menu, slider)
+        profile.CustomStart_AddlUnits_ExtraMCCs = slider.value
+        menu.AddlUnits_ExtraMCCs.text = tostring(slider.value)
+	end,
+	on_AddlUnits_ExtraMCCs_AddMiner = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraMCCs_AddMiner = value
+	end,
+	on_AddlUnits_ExtraMCCs_AddAdvMiner = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraMCCs_AddAdvMiner = value
+	end,
+	on_AddlUnits_ExtraMCCs_AddSolarCell = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraMCCs_AddSolarCell = value
+	end,
+	on_AddlUnits_ExtraMCCs_AddTurret = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraMCCs_AddTurret = value
+	end,
+	on_AddlUnits_ExtraMCCs_AddBehavior = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraMCCs_AddBehavior = value
+	end,
+	on_AddlUnits_ExtraMCCs_AddCapacitor = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraMCCs_AddCapacitor = value
+	end,
+	on_AddlUnits_ExtraMCCs_AddPowerCell = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraMCCs_AddPowerCell = value
+	end,
+
 
 
 	on_AddlUnits_StripMiners = function(menu, chk)

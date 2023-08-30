@@ -1,5 +1,5 @@
 # Custom Start
-**Current Version: v0.23**
+**Current Version: v0.24**
 
 Choose starting techs, bots, and home unit.
 
@@ -29,6 +29,7 @@ Should be compatible with all other mods, but since it is a scenario it can't be
 - Extra Dashbots, 0-20 - Same options as Workers
 - Extra Twinbots, 0-20 - Same options as Workers
 - Extra Scouts, 0-20 - Same options as Workers
+- Extra Mobile Command Centers, 0-20 - Same options as Workers
 
 **Choose starting Technologies:**
 

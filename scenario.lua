@@ -21,6 +21,7 @@ function package:init()
 	profile.CustomStart_AddlUnits_ExtraDashbots = profile.CustomStart_AddlUnits_ExtraDashbots or 0
 	profile.CustomStart_AddlUnits_ExtraTwinbots = profile.CustomStart_AddlUnits_ExtraTwinbots or 0
 	profile.CustomStart_AddlUnits_ExtraScouts = profile.CustomStart_AddlUnits_ExtraScouts or 0
+	profile.CustomStart_AddlUnits_ExtraMCCs = profile.CustomStart_AddlUnits_ExtraMCCs or 0
 end
 
 -- called when starting up a new game
@@ -330,6 +331,70 @@ function package:on_player_faction_spawn(faction, is_respawn)
 			botsMade = botsMade + 1
 		end
 	end
+
+
+	if profile.CustomStart_AddlUnits_ExtraMCCs > 1 then
+		local botsMade = 0
+
+		while botsMade < profile.CustomStart_AddlUnits_ExtraMCCs
+		do
+			local X = (botsMade % 5) - 10
+			local Y = math.floor(botsMade / 5) - 5
+
+			local worker = Map.CreateEntity(faction, "f_bot_2m_as")
+			worker:AddComponent("c_capacitor", "hidden")
+			worker:Place(loc.x+X, loc.y+Y)
+			worker.disconnected = false
+
+			local addedSmall = false
+			if profile.CustomStart_AddlUnits_ExtraMCCs_AddMiner then
+				worker:AddComponent("c_miner")
+				worker:AddComponent("c_miner")
+				addedSmall = true
+			end
+			if profile.CustomStart_AddlUnits_ExtraMCCs_AddAdvMiner then
+				if not addedSmall then
+					worker:AddComponent("c_adv_miner")
+					worker:AddComponent("c_adv_miner")
+					addedSmall = true
+				else
+					worker:AddItem("c_adv_miner", 1)
+				end
+			end
+			if profile.CustomStart_AddlUnits_ExtraMCCs_AddSolarCell then
+				if not addedSmall then
+					worker:AddComponent("c_solar_cell")
+					worker:AddComponent("c_solar_cell")
+					addedSmall = true
+				else
+					worker:AddItem("c_solar_cell", 1)
+				end
+			end
+			if profile.CustomStart_AddlUnits_ExtraMCCs_AddTurret then
+				if not addedSmall then
+					worker:AddComponent("c_portable_turret")
+					worker:AddComponent("c_portable_turret")
+					addedSmall = true
+				else
+					worker:AddItem("c_portable_turret", 1)
+				end
+			end
+
+			if profile.CustomStart_AddlUnits_ExtraMCCs_AddBehavior then
+				worker:AddComponent("c_behavior")
+			end
+			if profile.CustomStart_AddlUnits_ExtraMCCs_AddCapacitor then
+				worker:AddComponent("c_capacitor")
+			end
+			if profile.CustomStart_AddlUnits_ExtraMCCs_AddPowerCell then
+				worker:AddComponent("c_power_cell")
+			end
+
+			botsMade = botsMade + 1
+		end
+	end
+
+
 
 	-- unlock starter tech
 	faction:Unlock("t_robot_tech_basic")
