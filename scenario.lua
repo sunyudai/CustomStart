@@ -22,6 +22,7 @@ function package:init()
 	profile.CustomStart_AddlUnits_ExtraTwinbots = profile.CustomStart_AddlUnits_ExtraTwinbots or 0
 	profile.CustomStart_AddlUnits_ExtraScouts = profile.CustomStart_AddlUnits_ExtraScouts or 0
 	profile.CustomStart_AddlUnits_ExtraMCCs = profile.CustomStart_AddlUnits_ExtraMCCs or 0
+	profile.CustomStart_AddlUnits_ExtraCubs = profile.CustomStart_AddlUnits_ExtraCubs or 0
 end
 
 -- called when starting up a new game
@@ -34,6 +35,32 @@ function package:on_player_faction_spawn(faction, is_respawn)
 	-- select starting location for player faction
 	faction.home_location = GetPlayerFactionHomeOnGround()
 	local loc = faction.home_location
+
+	-- Storage Blocks
+	if profile.CustomStart_BoxO_Fabricators then
+		local box = Map.CreateEntity(faction, "f_building1x1e")
+		box:AddComponent("c_behavior")
+		box:AddComponent("c_portablecrane")
+		box:AddItem("c_fabricator", 24)
+		box:Place(loc.x - 4, loc.y - 4)
+		box.disconnected = false
+	end
+	if profile.CustomStart_BoxO_Behaviors then
+		local box = Map.CreateEntity(faction, "f_building1x1e")
+		box:AddComponent("c_behavior")
+		box:AddComponent("c_portablecrane")
+		box:AddItem("c_behavior", 24)
+		box:Place(loc.x - 4, loc.y - 4)
+		box.disconnected = false
+	end
+	if profile.CustomStart_BoxO_PortableTransporters then
+		local box = Map.CreateEntity(faction, "f_building1x1e")
+		box:AddComponent("c_behavior")
+		box:AddComponent("c_portablecrane")
+		box:AddItem("c_portablecrane", 24)
+		box:Place(loc.x - 4, loc.y - 4)
+		box.disconnected = false
+	end
 
 	-- HQ options
 	if profile.CustomStart_HQ_CubStart then
@@ -394,6 +421,61 @@ function package:on_player_faction_spawn(faction, is_respawn)
 		end
 	end
 
+	if profile.CustomStart_AddlUnits_ExtraCubs > 1 then
+		local botsMade = 0
+
+		while botsMade < profile.CustomStart_AddlUnits_ExtraCubs
+		do
+			local X = (botsMade % 5) - 10
+			local Y = math.floor(botsMade / 5) + 5
+
+			local worker = Map.CreateEntity(faction, "f_bot_1m_a")
+			worker:Place(loc.x+X, loc.y+Y)
+			worker.disconnected = false
+
+			local addedSmall = false
+			if profile.CustomStart_AddlUnits_ExtraCubs_AddMiner then
+				worker:AddComponent("c_miner")
+				addedSmall = true
+			end
+			if profile.CustomStart_AddlUnits_ExtraCubs_AddAdvMiner then
+				if not addedSmall then
+					worker:AddComponent("c_adv_miner")
+					addedSmall = true
+				else
+					worker:AddItem("c_adv_miner", 1)
+				end
+			end
+			if profile.CustomStart_AddlUnits_ExtraCubs_AddSolarCell then
+				if not addedSmall then
+					worker:AddComponent("c_solar_cell")
+					addedSmall = true
+				else
+					worker:AddItem("c_solar_cell", 1)
+				end
+			end
+			if profile.CustomStart_AddlUnits_ExtraCubs_AddTurret then
+				if not addedSmall then
+					worker:AddComponent("c_portable_turret")
+					addedSmall = true
+				else
+					worker:AddItem("c_portable_turret", 1)
+				end
+			end
+
+			if profile.CustomStart_AddlUnits_ExtraCubs_AddBehavior then
+				worker:AddComponent("c_behavior")
+			end
+			if profile.CustomStart_AddlUnits_ExtraCubs_AddCapacitor then
+				worker:AddComponent("c_capacitor")
+			end
+			if profile.CustomStart_AddlUnits_ExtraCubs_AddPowerCell then
+				worker:AddComponent("c_power_cell")
+			end
+
+			botsMade = botsMade + 1
+		end
+	end
 
 
 	-- unlock starter tech

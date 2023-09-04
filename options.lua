@@ -1,8 +1,80 @@
 local profile = Game.GetProfile()
 
+local CustomUnitSliderSettings = {}
+function CustomUnitSliderSettings:Init()
+    if self.Slider_Value == nil then self.Slider_Value = 0 end
+
+    if self.AddMiner == nil then self.AddMiner = false end
+    if self.AddAdvMiner == nil then self.AddAdvMiner = false end
+    if self.AddSolarCell == nil then self.AddSolarCell = false end
+    if self.AddTurret == nil then self.AddTurret = false end
+
+    if self.AddTurret == nil then self.AddTurret = false end
+    if self.AddCapacitor == nil then self.AddCapacitor = false end
+    if self.AddCapacitor == nil then self.AddCapacitor = false end	
+end
+
+local CustomUnitSlider = {}
+UI.Register("CustomUnitSlider", [[
+    <VerticalList child_align=left>
+        <HorizontalList>
+            <Slider id=CustomUnitSlider_Slider height=36 width=320 min=0 max=20 step=1 on_change={on_CustomUnitSlider_changed}/>
+            <Text id=CustomUnitSlider width=30 fill=false text="" valign=center textalign=center/>
+            <Text width=200 text="{self.text}" valign=center textalign=left/>
+        </HorizontalList>
+        <HorizontalList>
+            <Text width=120 text="Small (max 1):" textalign=right/>
+            <Button id=CustomUnitSlider_AddMiner on_click={on_CustomUnitSlider_AddMiner} width=24 height=24/><Text width=90 text="+Miner"/>
+            <Button id=CustomUnitSlider_AddAdvMiner on_click={on_CustomUnitSlider_AddAdvMiner} width=24 height=24/><Text width=90 text="+AdvMiner"/>
+            <Button id=CustomUnitSlider_AddSolarCell on_click={on_CustomUnitSlider_AddSolarCell} width=24 height=24/><Text width=90 text="+SolarCell"/>
+            <Button id=CustomUnitSlider_AddTurret on_click={on_CustomUnitSlider_AddTurret} width=24 height=24/><Text width=90 text="+Turret"/>
+        </HorizontalList>
+        <HorizontalList>
+            <Text width=120 text="Internal (max 2):" textalign=right/>
+            <Button id=CustomUnitSlider_AddBehavior on_click={on_CustomUnitSlider_AddBehavior} width=24 height=24/><Text width=90 text="+Behavior"/>
+            <Button id=CustomUnitSlider_AddCapacitor on_click={on_CustomUnitSlider_AddCapacitor} width=24 height=24/><Text width=90 text="+Capacitor"/>
+            <Button id=CustomUnitSlider_AddPowerCell on_click={on_CustomUnitSlider_AddPowerCell} width=24 height=24/><Text width=90 text="+PowerCell"/>
+        </HorizontalList>
+    </VerticalList>
+]], CustomUnitSlider)
+function CustomUnitSlider:render()
+	if self.CustomUnitSliderSettings == nil then
+		self.CustomUnitSliderSettings = CustomUnitSliderSettings
+	end
+
+	table.insert(self, CustomUnitSliderSettings)
+
+    if self.CustomUnitSliderSettings.Slider_Value == nil then self.CustomUnitSliderSettings.Slider_Value = 0 end
+
+    if self.CustomUnitSliderSettings.AddMiner == nil then self.CustomUnitSliderSettings.AddMiner = false end
+    if self.CustomUnitSliderSettings.AddAdvMiner == nil then self.CustomUnitSliderSettings.AddAdvMiner = false end
+    if self.CustomUnitSliderSettings.AddSolarCell == nil then self.CustomUnitSliderSettings.AddSolarCell = false end
+    if self.CustomUnitSliderSettings.AddTurret == nil then self.CustomUnitSliderSettings.AddTurret = false end
+
+    if self.CustomUnitSliderSettings.AddTurret == nil then self.CustomUnitSliderSettings.AddTurret = false end
+    if self.CustomUnitSliderSettings.AddCapacitor == nil then self.CustomUnitSliderSettings.AddCapacitor = false end
+    if self.CustomUnitSliderSettings.AddCapacitor == nil then self.CustomUnitSliderSettings.AddCapacitor = false end
+    
+    self.CustomUnitSlider.text = tostring(self.CustomUnitSliderSettings.Slider_Value)
+    self.CustomUnitSlider_Slider.value = self.CustomUnitSliderSettings.Slider_Value
+end
+function CustomUnitSlider:on_CustomUnitSlider_changed(slider, value)
+    self.CustomUnitSliderSettings.Slider_Value = value
+    self:render()
+end
+-- <CustomUnitSlider id=testCUSlider/> TODO: Get this working
+
 -- Веrnhаrd (Stage): There are 2 types of widgets, built-in and Lua-created.
 -- Built in widgets: <Modal>, <VerticalList>, <HorizontalList>, <ScrollList>, <Text>, <Button>, <Spacer>, <Box>, <InputText>, <MultiLineInputText>, <Slider>, <Canvas>, <Image>, <Scale>, <Progress>, <Wrap>, <Video>, <PanView>, <ProgressCircle>, <Minimap>, <Throbber>, <Draw>, <Camera>, <StaticImage>, <Preview>
 -- Lua-created widgets are registered in code with UI.Register. There's a bunch of generic ones in Main/ui/Widgets.lua (like <CheckBox> or <Combo>) and many specific ones in all the UI code files.
+
+--[10:55 PM]Johan: I think an ultimate solution might involve having a blueprint editor in the menu 
+--[10:56 PM]sunyudai: I... huh. I wonder if I can load user blueprints from the mod menu.
+--That's an intriguing idea that certainly warrants investigation if I can pull it off. 
+--[10:59 PM]sunyudai: (I realize that that's not quite what you were saying, but it's where my mind went.)
+--[11:59 PM]Maz: Game.GetProfile("").blueprints
+--[11:59 PM]Maz: If called with an empty string or nil, will always return entire parent table
+--https://modding.desyncedgame.com/syntax.html#game-getprofile
 
 return UI.New([[
 	<ScrollList child_padding=8>
@@ -23,6 +95,18 @@ return UI.New([[
 			<Text text="Convenient packages for specific units" textalign=center/>
 			<HorizontalList><Button id=AddlUnits_DefaultScouts on_click={on_AddlUnits_DefaultScouts} width=28 height=28/><Text valign=center width=200 text="Default Scouts"/></HorizontalList>
 			<HorizontalList><Button id=AddlUnits_StripMiners on_click={on_AddlUnits_StripMiners} width=28 height=28/><Text valign=center width=200 text="Cheaty Strip Miners"/></HorizontalList>
+		</VerticalList>
+
+		
+		<Box>
+			<Text text="Box-O-Goodies" style=hl textalign=center/>
+		</Box>
+		<Text text="Select as many as you like." textalign=center/>
+		<Text text="Each storage comes with a behavior, a portable item transporter, and 24 of the selected item" textalign=center/>
+		<VerticalList child_align=left>
+			<HorizontalList><Button id=BoxO_Fabricators on_click={on_BoxO_Fabricators} width=28 height=28/><Text valign=center width=200 text="Box-O-Fabricators"/></HorizontalList>
+			<HorizontalList><Button id=BoxO_Behaviors on_click={on_BoxO_Behaviors} width=28 height=28/><Text valign=center width=200 text="Box-O-Behaviors"/></HorizontalList>
+			<HorizontalList><Button id=BoxO_PortableTransporters on_click={on_BoxO_PortableTransporters} width=28 height=28/><Text valign=center width=200 text="Box-O-Portable Transporters"/></HorizontalList>
 		</VerticalList>
 
 		<Box>
@@ -125,6 +209,25 @@ return UI.New([[
 				<Button id=AddlUnits_ExtraMCCs_AddCapacitor on_click={on_AddlUnits_ExtraMCCs_AddCapacitor} width=24 height=24/><Text width=90 text="+Capacitor"/>
 				<Button id=AddlUnits_ExtraMCCs_AddPowerCell on_click={on_AddlUnits_ExtraMCCs_AddPowerCell} width=24 height=24/><Text width=90 text="+PowerCell"/>
 			</HorizontalList>
+			<Spacer height=12/>
+			<HorizontalList>
+				<Slider id=AddlUnits_ExtraCubs_Slider height=36 width=320 min=0 max=20 step=1 on_change={on_AddlUnits_ExtraCubs_changed}/>
+				<Text id=AddlUnits_ExtraCubs width=30 fill=false text="" valign=center textalign=center/>
+				<Text width=200 text="Extra Cubs" valign=center textalign=left/>
+			</HorizontalList>
+			<HorizontalList>
+				<Text width=120 text="Small (max 1):" textalign=right/>
+				<Button id=AddlUnits_ExtraCubs_AddMiner on_click={on_AddlUnits_ExtraCubs_AddMiner} width=24 height=24/><Text width=90 text="+Miner"/>
+				<Button id=AddlUnits_ExtraCubs_AddAdvMiner on_click={on_AddlUnits_ExtraCubs_AddAdvMiner} width=24 height=24/><Text width=90 text="+AdvMiner"/>
+				<Button id=AddlUnits_ExtraCubs_AddSolarCell on_click={on_AddlUnits_ExtraCubs_AddSolarCell} width=24 height=24/><Text width=90 text="+SolarCell"/>
+				<Button id=AddlUnits_ExtraCubs_AddTurret on_click={on_AddlUnits_ExtraCubs_AddTurret} width=24 height=24/><Text width=90 text="+Turret"/>
+			</HorizontalList>
+			<HorizontalList>
+				<Text width=120 text="Internal (max 2):" textalign=right/>
+				<Button id=AddlUnits_ExtraCubs_AddBehavior on_click={on_AddlUnits_ExtraCubs_AddBehavior} width=24 height=24/><Text width=90 text="+Behavior"/>
+				<Button id=AddlUnits_ExtraCubs_AddCapacitor on_click={on_AddlUnits_ExtraCubs_AddCapacitor} width=24 height=24/><Text width=90 text="+Capacitor"/>
+				<Button id=AddlUnits_ExtraCubs_AddPowerCell on_click={on_AddlUnits_ExtraCubs_AddPowerCell} width=24 height=24/><Text width=90 text="+PowerCell"/>
+			</HorizontalList>
 		</VerticalList>
 
 		<Box>
@@ -166,6 +269,15 @@ return UI.New([[
 		menu.HQ_CubStart.icon = profile.CustomStart_HQ_CubStart and "icon_small_confirm" or nil
 		menu.HQ_CubStart.active = profile.CustomStart_HQ_CubStart
 
+		-- Box-Os
+		menu.BoxO_Fabricators.icon = profile.CustomStart_BoxO_Fabricators and "icon_small_confirm" or nil
+		menu.BoxO_Fabricators.active = profile.CustomStart_BoxO_Fabricators
+
+		menu.BoxO_Behaviors.icon = profile.CustomStart_BoxO_Behaviors and "icon_small_confirm" or nil
+		menu.BoxO_Behaviors.active = profile.CustomStart_BoxO_Behaviors
+
+		menu.BoxO_PortableTransporters.icon = profile.CustomStart_BoxO_PortableTransporters and "icon_small_confirm" or nil
+		menu.BoxO_PortableTransporters.active = profile.CustomStart_BoxO_PortableTransporters
 
 		-- Additional Unit presets
 		menu.AddlUnits_DefaultScouts.icon = profile.CustomStart_AddlUnits_DefaultScouts and "icon_small_confirm" or nil
@@ -303,6 +415,30 @@ return UI.New([[
 		menu.AddlUnits_ExtraMCCs_AddPowerCell.icon = profile.CustomStart_AddlUnits_ExtraMCCs_AddPowerCell and "icon_small_confirm" or nil
 		menu.AddlUnits_ExtraMCCs_AddPowerCell.active = profile.CustomStart_AddlUnits_ExtraMCCs_AddPowerCell
 
+		profile.CustomStart_AddlUnits_ExtraCubs = profile.CustomStart_AddlUnits_ExtraCubs or 0
+        menu.AddlUnits_ExtraCubs.text = tostring(profile.CustomStart_AddlUnits_ExtraCubs)
+        menu.AddlUnits_ExtraCubs_Slider.value = profile.CustomStart_AddlUnits_ExtraCubs
+
+		menu.AddlUnits_ExtraCubs_AddMiner.icon = profile.CustomStart_AddlUnits_ExtraCubs_AddMiner and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraCubs_AddMiner.active = profile.CustomStart_AddlUnits_ExtraCubs_AddMiner
+
+		menu.AddlUnits_ExtraCubs_AddAdvMiner.icon = profile.CustomStart_AddlUnits_ExtraCubs_AddAdvMiner and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraCubs_AddAdvMiner.active = profile.CustomStart_AddlUnits_ExtraCubs_AddAdvMiner
+
+		menu.AddlUnits_ExtraCubs_AddSolarCell.icon = profile.CustomStart_AddlUnits_ExtraCubs_AddSolarCell and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraCubs_AddSolarCell.active = profile.CustomStart_AddlUnits_ExtraCubs_AddSolarCell
+
+		menu.AddlUnits_ExtraCubs_AddTurret.icon = profile.CustomStart_AddlUnits_ExtraCubs_AddTurret and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraCubs_AddTurret.active = profile.CustomStart_AddlUnits_ExtraCubs_AddTurret
+
+		menu.AddlUnits_ExtraCubs_AddBehavior.icon = profile.CustomStart_AddlUnits_ExtraCubs_AddBehavior and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraCubs_AddBehavior.active = profile.CustomStart_AddlUnits_ExtraCubs_AddBehavior
+
+		menu.AddlUnits_ExtraCubs_AddCapacitor.icon = profile.CustomStart_AddlUnits_ExtraCubs_AddCapacitor and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraCubs_AddCapacitor.active = profile.CustomStart_AddlUnits_ExtraCubs_AddCapacitor
+
+		menu.AddlUnits_ExtraCubs_AddPowerCell.icon = profile.CustomStart_AddlUnits_ExtraCubs_AddPowerCell and "icon_small_confirm" or nil
+		menu.AddlUnits_ExtraCubs_AddPowerCell.active = profile.CustomStart_AddlUnits_ExtraCubs_AddPowerCell
 
 
 		-- Tech Options
@@ -355,6 +491,26 @@ return UI.New([[
 		chk.icon = value and "icon_small_confirm" or nil
 		chk.active = value
 		profile.CustomStart_HQ_CubStart = value
+	end,
+
+	-- Box-Os
+	on_BoxO_Fabricators = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_BoxO_Fabricators = value
+	end,
+	on_BoxO_Behaviors = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_BoxO_Behaviors = value
+	end,
+	on_BoxO_PortableTransporters = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_BoxO_PortableTransporters = value
 	end,
 
 	-- Additional Unit options
@@ -553,8 +709,6 @@ return UI.New([[
 		profile.CustomStart_AddlUnits_ExtraScouts_AddPowerCell = value
 	end,
 
-
-
 	on_AddlUnits_ExtraMCCs_changed = function(menu, slider)
         profile.CustomStart_AddlUnits_ExtraMCCs = slider.value
         menu.AddlUnits_ExtraMCCs.text = tostring(slider.value)
@@ -600,6 +754,53 @@ return UI.New([[
 		chk.icon = value and "icon_small_confirm" or nil
 		chk.active = value
 		profile.CustomStart_AddlUnits_ExtraMCCs_AddPowerCell = value
+	end,
+
+	on_AddlUnits_ExtraCubs_changed = function(menu, slider)
+        profile.CustomStart_AddlUnits_ExtraCubs = slider.value
+        menu.AddlUnits_ExtraCubs.text = tostring(slider.value)
+	end,
+	on_AddlUnits_ExtraCubs_AddMiner = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraCubs_AddMiner = value
+	end,
+	on_AddlUnits_ExtraCubs_AddAdvMiner = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraCubs_AddAdvMiner = value
+	end,
+	on_AddlUnits_ExtraCubs_AddSolarCell = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraCubs_AddSolarCell = value
+	end,
+	on_AddlUnits_ExtraCubs_AddTurret = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraCubs_AddTurret = value
+	end,
+	on_AddlUnits_ExtraCubs_AddBehavior = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraCubs_AddBehavior = value
+	end,
+	on_AddlUnits_ExtraCubs_AddCapacitor = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraCubs_AddCapacitor = value
+	end,
+	on_AddlUnits_ExtraCubs_AddPowerCell = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_AddlUnits_ExtraCubs_AddPowerCell = value
 	end,
 
 
