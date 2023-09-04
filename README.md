@@ -55,8 +55,9 @@ Should be compatible with all other mods, but since it is a scenario it can't be
 - More !?
 
 ---- 
-# Steam Workshop Page
+# Links
 
 Comments/Concerns/Bug Reports and Requests welcome!
 
-https://steamcommunity.com/sharedfiles/filedetails/?id=3021377248
+Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=3021377248
+Github: https://github.com/sunyudai/CustomStart
