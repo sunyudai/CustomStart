@@ -45,8 +45,9 @@ Should be compatible with all other mods, but since it is a scenario it can't be
 ----
 # Future Plans
 
-- Rework UI to use tabs instead of ascrollbar (options are getting long)
-- Home unit additional loadout(extra fabricator, assemblers, research pylon, more?)
+- Rework UI to use tabs instead of a scrollbar (options are getting long)
+- Add preset/prebuilt specific purpose options - like a roomba.
+- Home unit additional loadout (extra fabricator, assemblers, research pylon, more?)
 - Figure out how to add starting drones.
 - Clearly mark Challenge mode, re-balance, and cheat mode options
 - Tooltips (looks like this might not be possible? Current widgets don't seem to support, would need to write my own.)
