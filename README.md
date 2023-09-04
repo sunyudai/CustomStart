@@ -1,5 +1,5 @@
 # Custom Start
-**Current Version: v0.24**
+**Current Version: v0.25**
 
 Choose starting techs, bots, and home unit.
 
@@ -16,12 +16,18 @@ Should be compatible with all other mods, but since it is a scenario it can't be
 
 - Default Mobile Command Center (same as base game)
 - Mobile Command Center without deploy componant (for those who want to play a nomad game)
-- Cub (A cub that starts with a fabricator, solar cell, and an expanded storage. Hardmode.)
+- Cub (A cub that starts with a fabricator, solar cell, and an expanded storage. Hardmode if this is your only bot.)
 
 **Choose Extra starting Unit presets:**
 
 - Default Starting Scouts: Same as vanilla start.
 - Cheaty Stripminers: a pack of 6 twinbots that come pre-loaded with advanced miners, behaviors, and power cells.
+
+**Choose a Box-O-Goodies:**
+
+- Box-O- 24 Fabricators
+- Box-O- 24 Behaviors
+- Box-O- 24 Portable Transporters
 
 **Choose Extra starting Units:**
 
@@ -30,6 +36,7 @@ Should be compatible with all other mods, but since it is a scenario it can't be
 - Extra Twinbots, 0-20 - Same options as Workers
 - Extra Scouts, 0-20 - Same options as Workers
 - Extra Mobile Command Centers, 0-20 - Same options as Workers
+- Extra Cubs, 0-20 - Same options as Workers (Medium componants still pending)
 
 **Choose starting Technologies:**
 
@@ -38,6 +45,7 @@ Should be compatible with all other mods, but since it is a scenario it can't be
 ----
 # Future Plans
 
+- Rework UI to use tabs instead of ascrollbar (options are getting long)
 - Home unit additional loadout(extra fabricator, assemblers, research pylon, more?)
 - Figure out how to add starting drones.
 - Clearly mark Challenge mode, re-balance, and cheat mode options
