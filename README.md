@@ -1,5 +1,5 @@
 # Custom Start
-**Current Version: v0.25**
+**Current Version: v0.26**
 
 Choose starting techs, bots, and home unit.
 
@@ -16,6 +16,7 @@ Should be compatible with all other mods, but since it is a scenario it can't be
 
 - Default Mobile Command Center (same as base game)
 - Mobile Command Center without deploy componant (for those who want to play a nomad game)
+- Automation Challenge, a MCC with no deploy, but with a power cell, miner, behavior controller, and fabricator. (Requested by EightTonnesOfCrab)
 - Cub (A cub that starts with a fabricator, solar cell, and an expanded storage. Hardmode if this is your only bot.)
 
 **Choose Extra starting Unit presets:**

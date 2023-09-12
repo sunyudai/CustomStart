@@ -11,7 +11,7 @@ function package:init()
 	Game.GetModPackage("Main/Freeplay").on_player_faction_spawn = nil
 
 	-- set defaults if no Home units were selected
-	if(not profile.CustomStart_HQ_CubStart and not profile.CustomStart_HQ_CC_NoDeploy and not profile.CustomStart_HQ_CC_Default) then
+	if(not profile.CustomStart_HQ_CubStart and not profile.CustomStart_HQ_CC_NoDeploy and not profile.CustomStart_HQ_CC_Default and not profile.CustomStart_HQ_CC_AutomationChallenge) then
 		profile.CustomStart_HQ_CC_Default = true
 		profile.CustomStart_AddlUnits_DefaultScouts = true
 	end
@@ -85,7 +85,19 @@ function package:on_player_faction_spawn(faction, is_respawn)
 		faction.home_entity = lander
 	end
 
-	if profile.CustomStart_HQ_CC_Default or (not profile.CustomStart_HQ_CC_NoDeploy and not profile.CustomStart_HQ_CubStart) then
+	if profile.CustomStart_HQ_CC_AutomationChallenge then
+		local lander = Map.CreateEntity(faction, "f_bot_2m_as")
+		lander:AddComponent("c_capacitor", "hidden")
+		lander:AddComponent("c_power_cell")
+		lander:AddComponent("c_behavior")
+		lander:AddComponent("c_miner")
+		lander:AddComponent("c_fabricator")
+		lander:Place(loc.x, loc.y)
+		lander.disconnected = false
+		faction.home_entity = lander
+	end
+
+	if profile.CustomStart_HQ_CC_Default or (not profile.CustomStart_HQ_CC_NoDeploy and not profile.CustomStart_HQ_CubStart and not profile.CustomStart_HQ_CC_AutomationChallenge) then
 		local lander = Map.CreateEntity(faction, "f_bot_2m_as")
 		lander:AddComponent("c_deployment", "hidden")
 		lander:AddComponent("c_power_cell")
@@ -131,7 +143,7 @@ function package:on_player_faction_spawn(faction, is_respawn)
 	end
 
 	-- Additional unit custom
-	if profile.CustomStart_AddlUnits_ExtraWorkers > 1 then
+	if profile.CustomStart_AddlUnits_ExtraWorkers >= 1 then
 		local botsMade = 0
 
 		while botsMade < profile.CustomStart_AddlUnits_ExtraWorkers
@@ -187,7 +199,7 @@ function package:on_player_faction_spawn(faction, is_respawn)
 		end
 	end
 
-	if profile.CustomStart_AddlUnits_ExtraDashbots > 1 then
+	if profile.CustomStart_AddlUnits_ExtraDashbots >= 1 then
 		local botsMade = 0
 
 		while botsMade < profile.CustomStart_AddlUnits_ExtraDashbots
@@ -243,7 +255,7 @@ function package:on_player_faction_spawn(faction, is_respawn)
 		end
 	end
 
-	if profile.CustomStart_AddlUnits_ExtraTwinbots > 1 then
+	if profile.CustomStart_AddlUnits_ExtraTwinbots >= 1 then
 		local botsMade = 0
 
 		while botsMade < profile.CustomStart_AddlUnits_ExtraTwinbots
@@ -303,7 +315,7 @@ function package:on_player_faction_spawn(faction, is_respawn)
 		end
 	end
 
-	if profile.CustomStart_AddlUnits_ExtraScouts > 1 then
+	if profile.CustomStart_AddlUnits_ExtraScouts >= 1 then
 		local botsMade = 0
 
 		while botsMade < profile.CustomStart_AddlUnits_ExtraScouts
@@ -360,7 +372,7 @@ function package:on_player_faction_spawn(faction, is_respawn)
 	end
 
 
-	if profile.CustomStart_AddlUnits_ExtraMCCs > 1 then
+	if profile.CustomStart_AddlUnits_ExtraMCCs >= 1 then
 		local botsMade = 0
 
 		while botsMade < profile.CustomStart_AddlUnits_ExtraMCCs
@@ -421,7 +433,7 @@ function package:on_player_faction_spawn(faction, is_respawn)
 		end
 	end
 
-	if profile.CustomStart_AddlUnits_ExtraCubs > 1 then
+	if profile.CustomStart_AddlUnits_ExtraCubs >= 1 then
 		local botsMade = 0
 
 		while botsMade < profile.CustomStart_AddlUnits_ExtraCubs

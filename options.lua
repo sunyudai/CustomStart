@@ -85,6 +85,7 @@ return UI.New([[
 		<VerticalList child_align=left>
 			<HorizontalList><Button id=HQ_CC_Default on_click={on_HQ_CC_Default} width=28 height=28/><Text valign=center width=300 text="Mobile Command Center (Default)"/></HorizontalList>
 			<HorizontalList><Button id=HQ_CC_NoDeploy on_click={on_HQ_CC_NoDeploy} width=28 height=28/><Text valign=center width=300 text="Mobile Command Center (No Deploy, original by Johan)"/></HorizontalList>
+			<HorizontalList><Button id=HQ_CC_AutomationChallenge on_click={on_HQ_CC_AutomationChallenge} width=28 height=28/><Text valign=center width=300 text="Automation Challenge (requested by EightTonnesOfCrab)"/></HorizontalList>
 			<HorizontalList><Button id=HQ_CubStart on_click={on_HQ_CubStart} width=28 height=28/><Text valign=center width=300 text="Cub Start (original by Johan)"/></HorizontalList>
 		</VerticalList>
 
@@ -265,9 +266,12 @@ return UI.New([[
 
 		menu.HQ_CC_NoDeploy.icon = profile.CustomStart_HQ_CC_NoDeploy and "icon_small_confirm" or nil
 		menu.HQ_CC_NoDeploy.active = profile.CustomStart_HQ_CC_NoDeploy
-
+		
 		menu.HQ_CubStart.icon = profile.CustomStart_HQ_CubStart and "icon_small_confirm" or nil
 		menu.HQ_CubStart.active = profile.CustomStart_HQ_CubStart
+
+		menu.HQ_CC_AutomationChallenge.icon = profile.CustomStart_HQ_CC_AutomationChallenge and "icon_small_confirm" or nil
+		menu.HQ_CC_AutomationChallenge.active = profile.CustomStart_HQ_CC_AutomationChallenge
 
 		-- Box-Os
 		menu.BoxO_Fabricators.icon = profile.CustomStart_BoxO_Fabricators and "icon_small_confirm" or nil
@@ -485,6 +489,12 @@ return UI.New([[
 		chk.icon = value and "icon_small_confirm" or nil
 		chk.active = value
 		profile.CustomStart_HQ_CC_NoDeploy = value
+	end,
+	on_HQ_CC_AutomationChallenge = function(menu, chk)
+		local value = not chk.active
+		chk.icon = value and "icon_small_confirm" or nil
+		chk.active = value
+		profile.CustomStart_HQ_CC_AutomationChallenge = value
 	end,
 	on_HQ_CubStart = function(menu, chk)
 		local value = not chk.active
